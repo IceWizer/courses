@@ -7,7 +7,7 @@ require_once dirname(__FILE__) . '/Entity.php';
  *
  * @author Florian
  */
-class Country extends Entity{
+class ListeDeCourses extends Entity{
     private $label;
 
     public function __construct($p_identifier, $p_label)
@@ -18,7 +18,7 @@ class Country extends Entity{
     }
     public static function __constructStatic($p_identifier, $p_label)
     {
-        return new Country($p_identifier, $p_label);
+        return new ListeDeCourses($p_identifier, $p_label);
     }
 
     public function getLabel()
@@ -29,7 +29,7 @@ class Country extends Entity{
     public static function insert($label)
     {
         
-        $sql = 'INSERT INTO Country (label) VALUES (:label)';
+        $sql = 'INSERT INTO Produit (label) VALUES (:label)';
         
         MyPDO::InsertDelete($sql, array(':label' => $label));
     }
@@ -38,27 +38,24 @@ class Country extends Entity{
     {
         echo "<td>" . htmlspecialchars($this->identifier) . "</td>";
         echo "<td>" . htmlspecialchars($this->label) . "</td>";
-        echo "<td class=\"col-3\">";
-        echo '<a class="btn btn-info" href="./country.php?identifier=' . $this->identifier . '">Détails</a>';
-        echo "</td>";
     }
 
-    public static function getCountries()
+    public static function getProducts()
     {
-        $sql = 'SELECT Country.identifier, Country.label
-                FROM Country';
+        $sql = 'SELECT Produit.identifier, Produit.label
+                FROM Produit';
         
-        $countries = array();
+        $products = array();
         
-        $countriesRaw = MyPDO::Select($sql, array());
-        $countriesFetch = $countriesRaw->FetchAll(PDO::FETCH_FUNC, "country::__constructStatic");
+        $productsRaw = MyPDO::Select($sql, array());
+        $productsFetch = $productsRaw->FetchAll(PDO::FETCH_FUNC, "ListeDeCourses::__constructStatic");
         
-        foreach ($countriesFetch as $country)
+        foreach ($productsFetch as $product)
         {
-            $countries[] = $country;
+            $products[] = $product;
         }
         
-        return $countries;
+        return $products;
     }
 
     public function jsonSerialize(): array {

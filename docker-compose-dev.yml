@@ -4,6 +4,7 @@ services:
     container_name: mysql
     environment:
       - MYSQL_ROOT_PASSWORD=Not24get
+      - MYSQL_DATABASE=ListeDeCourse
     volumes:
       - C:\Users\flori\OneDrive\Bureau\datacourse:/var/lib/mysql
     ports:

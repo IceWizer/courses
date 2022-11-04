@@ -6,7 +6,7 @@
  * @author Florian
  */
 abstract class MyPDO {
-    private static $databaseName = 'mysql:host=mysql;dbname=cityData;port=3306';
+    private static $databaseName = 'mysql:host=mysql;dbname=ListeDeCourse;port=3306';
     private static $databaseUser = 'root';
     private static $databasePassword = 'Not24get';
     

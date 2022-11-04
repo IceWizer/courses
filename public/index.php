@@ -1,22 +1,22 @@
 <?php
 
 ini_set('display_errors', 'on');
-require_once dirname(__FILE__) . '/../repositories/Country.php';
+require_once dirname(__FILE__) . '/../repositories/ListeDeCourses.php';
 
-$countries = Country::getCountries();
+$products = ListeDeCourses::getProducts();
 ?>
 
 <h1>Insert</h1>
-<form action="./country-add.php" method="post">
-    <label for="label">Enter your label Country: </label>
+<form action="./product-add.php" method="post">
+    <label for="label">Enter your label Product: </label>
     <input type="text" name="label" id="label" required autofocus>
     <input type="submit" value="Insert!">
 </form>
 <table>
     <?php
-    foreach ($countries as $country) {
+    foreach ($products as $product) {
         echo '<tr>';
-        $country->view();
+        $product->view();
         echo '</tr>';
     }
     ?>
