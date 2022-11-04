@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  mysql:
+    container_name: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=Not24get
+    volumes:
+      - C:\Users\flori\OneDrive\Bureau\datacourse:/var/lib/mysql
+    ports:
+      - 3306:3306
+    image:
+      mysql:8.0.31-debian
+  course:
+    container_name: course
+    volumes:
+      - C:\Users\flori\OneDrive\Bureau\course:/app
+    ports:
+      - 80:80
+    links:
+      - "mysql:database"
+    image:
+      icewize/php-apache-pdo:latest
